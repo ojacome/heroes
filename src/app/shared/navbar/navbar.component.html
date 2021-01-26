@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/">FireApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
+        </li>    
+        <li class="nav-item" *ngIf="user$ | async">
+          <a class="nav-link" [routerLink]="['/heroes']" routerLinkActive="active" >Heroes</a>
+        </li>    
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="user$ | async as user; else login">          
+        <li class="nav-item dropdown">
+          <div
+          class="nav-link dropdown-toggle" 
+          id="navbarDropdown" 
+          role="button" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false">
+          <small>
+            {{ user.email }} 
+          </small>          
+          <img [src]="user.photoURL | imgAvatar " class="avatar" alt="Foto de perfil en miniatura">
+          </div>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!-- <div class="dropdown-divider"></div> -->
+            <button class="dropdown-item" (click)="onLogout()">Logout</button>
+          </div>
+        </li>
+      </ul>
+
+      <ng-template #login>
+        <ul class="navbar-nav ml-auto">    
+          <li class="nav-item">
+            <a 
+            class="nav-link" 
+            [routerLink]="['/login']" 
+            routerLinkActive="active" >
+            Login
+            </a>
+          </li>    
+          <li class="nav-item">
+            <a 
+            class="nav-link"    
+            [routerLink]="['/register']" 
+            routerLinkActive="active" >
+            Register
+            </a>
+          </li> 
+        </ul>
+      </ng-template>
+    </div>
+  </nav>

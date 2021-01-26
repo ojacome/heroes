@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firelogin-d2773": {
+      "hosting": {
+        "fire-login": [
+          "firelogin-d2773"
+        ]
+      }
+    }
+  }
+}

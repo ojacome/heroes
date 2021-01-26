@@ -1,0 +1,91 @@
+<div class="row mt-5 justify-content-center">
+    <div class="col-md-6">        
+        
+        <div class="row text-right">
+            <div class="col">
+                <button 
+                class="btn btn-secondary text-dark" 
+                (click)="regresar()" >
+                Regresar
+                </button>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col">
+                <form #formH="ngForm" (submit)="guardar(formH)">
+                    <div class="mt-2">
+                        <label for="id">Firebase Id</label>
+                        <input 
+                        type="text" 
+                        name="id" 
+                        id="id" 
+                        class="form-control" 
+                        disabled="disabled" 
+                        [(ngModel)]="heroe.id"
+                        placeholder="firebase id">
+                        <small class="text-muted">Este campo es autogenerado</small>
+                    </div>
+        
+                    <div class="mt-2">
+                        <label for="nombre">Nombre</label>
+                        <input 
+                        type="text"
+                         name="nombre" 
+                         id="nombre" 
+                         [(ngModel)]="heroe.nombre"
+                         class="form-control" 
+                         required 
+                         placeholder="nombre del héroe">                
+                    </div>
+        
+                    <div class="mt-2">
+                        <label for="poder">Poder</label>
+                        <input 
+                        type="text" 
+                        name="poder" 
+                        id="poder" 
+                        [(ngModel)]="heroe.poder"
+                        class="form-control" 
+                        placeholder="poder del héroe">                
+                    </div>
+        
+                    <div class="mt-2">
+                        <label>Estado</label>
+                        <br>
+                        
+                        <button 
+                        *ngIf="heroe.vivo"
+                        (click)="heroe.vivo = false"
+                        class="btn btn-outline-success " type="button">
+                            <i class="fas fa-smile-wink"></i>
+                            Vivo
+                        </button>           
+                        <button 
+                        *ngIf="!heroe.vivo"
+                        (click)="heroe.vivo = true"
+                        class="btn btn-outline-danger" type="button">
+                            <i class="fas fa-dizzy"></i>
+                            Muerto
+                        </button>      
+                    </div>
+        
+        
+                    <hr>
+                    <div class="mt-2 text-center">                       
+                        <button 
+                        class="btn btn-primary w-100"
+                        type="submit"
+                        [disabled]="formH.invalid"
+                        >
+                        <i class="fas fa-save"></i>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

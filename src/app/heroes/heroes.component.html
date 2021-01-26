@@ -1,0 +1,67 @@
+<div class="row mt-5">
+    <div class="col-md-9 mx-auto">
+    	<h1>Listado de Héroes</h1>
+    	<hr>
+    	
+    	<div class="row">
+    	    <div class="col">
+    	        <button class="btn btn-primary" [routerLink]="['heroe/nuevo']" >
+    	            <i class="fas fa-plus"></i>
+    	            Agregar
+    	        </button>
+    	    </div>
+    	</div>
+    	
+    	<div class=" table-responsive" *ngIf="!cargando">
+    	    <table class="table mt-3 animate__animated animate__fadeIn faster">
+    	        <thead class="table-dark">
+    	            <tr>
+    	                <th scope="col">#</th>
+    	                <th scope="col">Nombre</th>
+    	                <th scope="col">Poder</th>
+    	                <th scope="col">Vivo</th>
+    	                <th scope="col">Opciones</th>
+    	            </tr>
+    	        </thead>
+    	        <tbody>
+    	            <tr *ngFor="let heroe of heroes; let i = index">
+    	                <td>{{ i+1 }}</td>
+    	                <td>{{ heroe.nombre }}</td>
+    	                <td>{{ heroe.poder }}</td>
+    	                <td>
+    	                    <span *ngIf="heroe.vivo" class="badge bg-success">Vivo</span>
+    	                    <span *ngIf="!heroe.vivo" class="badge bg-danger">Muerto</span>
+    	                </td>
+    	                <td>
+    	                    <button [routerLink]="['heroe', heroe.id]" class="btn btn-sm btn-outline-info mr-2">
+    	                        <i class="fa fa-pen"></i>
+    	                    </button>
+    	                    <button (click)="borrarHeroe( heroe, i )" class="btn btn-sm btn-outline-danger">
+    	                        <i class="fa fa-trash"></i>
+    	                    </button>
+    	                </td>
+    	            </tr>
+    	        </tbody>
+    	    </table>
+    	</div>
+    	
+    	<div class="alert alert-primary text-center mt-3 animate__animated animate__fadeIn" *ngIf="cargando" role="alert">
+    	    <h4 class="alert-heading">Cargando</h4>
+    	    <p>
+    	        <i class="fas fa-sync-alt fa-spin fa-2x"></i>
+    	    </p>
+    	    <p>Espere por favor ...</p>
+    	</div>
+    	
+    	
+    	<div 
+    	*ngIf="!cargando && heroes.length === 0"
+    	class="alert alert-warning text-center mt-3" 
+    	role="alert">
+    	    <h4 class="alert-heading">No hay registros</h4>
+    	    <p>
+    	        <i class="fas fa-exclamation fa-2x"></i>
+    	    </p>    
+    	</div>
+    </div>
+</div>
